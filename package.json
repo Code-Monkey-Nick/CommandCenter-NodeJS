@@ -1,0 +1,9 @@
+{
+	"name": "Guild-Wars-2-Command-Center",
+	"version": "0.0.1",
+	"description": "Guild Wars 2 app for broadcasting commander positions in WvW",
+	"dependencies": {
+		"socket.io": "~1.3.5",
+		"express": "~4.12.2"
+	}
+}
