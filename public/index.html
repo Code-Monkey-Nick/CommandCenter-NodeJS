@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Guild Wars 2 Command Center</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script>
+		var request = $.ajax({
+			url: "/getCode",
+			method: "POST"
+		});
+		request.done(function( msg ) {
+			console.log(msg);
+			$( "#code" ).val( msg.code );
+		});
+		request.fail(function( jqXHR, textStatus ) {
+			$( "#code" ).html( "Request failed: " + textStatus );
+		});
+	</script>
+</head>
+<body>
+	<h1>Guild Wars 2 Command Center</h1>
+	<div>Here is your code:</div>
+	<textarea id="code" rows="4" cols="40"></textarea>
+</body>
+</html>

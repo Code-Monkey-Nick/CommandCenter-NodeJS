@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%title%></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+	<h1>Guild Wars 2 Command Center</h1>
+	<div>Here is your code:</div>
+	<textarea id="code" rows="4" cols="40"><%code%></textarea>
+</body>
+</html>
