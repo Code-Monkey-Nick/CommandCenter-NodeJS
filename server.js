@@ -5,7 +5,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 require("./socket.js")(io);
-
+var mysql = require("./mysql.js"); // call function i.e. mysql.insert_account()
 var players = [];
 
 /*app.get('/', function(req, res){
@@ -62,6 +62,7 @@ app.get('/receiveCode', function(req, res){
 	            	players.push(accountInfo);
 	                console.log(players);
 	                console.log(players[0].name);
+	                mysql.insert_account(accountInfo.id, accountInfo.name, accountInfo.world, accountInfo.code);
 	                res.render('index', { title: 'Guild Wars 2 Command Center', code: accountInfo.code});
 	            }
 	        );
