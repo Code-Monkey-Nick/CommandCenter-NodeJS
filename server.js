@@ -58,10 +58,11 @@ app.get('/receiveCode', function(req, res){
 	            function(err, body, response) {
 	            	var accountInfo = JSON.parse(body);
 	            	//console.log(accountInfo.name);
-	            	accountInfo.code = sha512(accountInfo.name);
+	            	var salt = salt_generator();
+	            	accountInfo.code = sha512(accountInfo.name + salt);
 	            	players.push(accountInfo);
-	                console.log(players);
-	                console.log(players[0].name);
+	                //console.log(players);
+	                //console.log(players[0].name);
 	                mysql.insert_account(accountInfo.id, accountInfo.name, accountInfo.world, accountInfo.code);
 	                res.render('index', { title: 'Guild Wars 2 Command Center', code: accountInfo.code});
 	            }
@@ -71,6 +72,7 @@ app.get('/receiveCode', function(req, res){
 });
 
 app.get('/overwolf', function(req, res){
+	console.log(url);
 	res.redirect(url);
 });
 
@@ -80,3 +82,11 @@ http.listen(3001, function(){
   console.log('listening on *:3001');
 });
 
+function salt_generator() {
+  var salt;
+  var characterList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+";
+  for(i = 0; i < 22; i++) {
+    salt += characterList.charAt(Math.floor((Math.random() * characterList.length)));
+  }
+  return salt;
+}
